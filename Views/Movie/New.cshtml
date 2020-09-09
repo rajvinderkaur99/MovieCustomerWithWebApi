@@ -1,0 +1,44 @@
+﻿@model MovCustMVCAppWithAuthen.ViewModel.NewMovieViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Movie</h2>
+@using (Html.BeginForm("Save", "Movie"))
+{
+    <div class="form-group">
+        @Html.Label("Movie Name")
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("GenreType")
+        @Html.DropDownListFor(m => m.GenreTypeId, new SelectList(Model.GenreTypes, "Id", "Genretype"), " ", new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.Label("Release Date")
+        @Html.TextBoxFor(m => m.ReleaseDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.ReleaseDate)
+
+    </div>
+    <div class="form-group">
+        @Html.Label("Number In Stock")
+        @Html.TextBoxFor(m => m.NumberInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NumberInStock)
+    </div>
+    <div class="form-group">
+        @Html.Label("Number Avaliable")
+        @Html.TextBoxFor(m => m.NumberAvailable, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NumberAvailable)
+    </div>
+
+    <div>
+        @Html.HiddenFor(c => c.Id);
+        @Html.AntiForgeryToken();
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}
+

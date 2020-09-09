@@ -1,0 +1,14 @@
+﻿@model MovCustMVCAppWithAuthen.ViewModel.NewMovieViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<h1>@Model.Movie.Name</h1>
+<h1>@Model.Movie.GenreType.Genretype</h1>
+<h1></h1>
+<div>
+    @Html.ActionLink("Back", "Index", "Movie", null, new { @class = "btn btn-primary" })
+</div>

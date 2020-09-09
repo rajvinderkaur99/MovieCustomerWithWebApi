@@ -1,0 +1,56 @@
+﻿@model MovCustMVCAppWithAuthen.ViewModel.NewCustomerViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Customer</h2>
+
+
+@using (Html.BeginForm("Save", "Customer"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate)
+
+        @Html.TextBoxFor(m => m.BirthDate, "{0:d MMM yyyy}",
+       new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.BirthDate)
+
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MembershipTypeId)
+        @Html.DropDownListFor(m => m.MembershipTypeId,
+       new SelectList(Model.MembershipTypes, "Id", "Name"), " ",
+       new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MembershipTypeId)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.IsSubscribedToNewsLetter) SubscribedToNewsLetter
+        </label>
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+
+    @*<div class="from-group">
+            @Html.LabelFor(m=>m.IsSubscribedToNewsLetter)
+            @Html.CheckBoxFor(m=>m.IsSubscribedToNewsLetter)
+        </div>*@
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
